@@ -6,6 +6,7 @@ import Google from "next-auth/providers/google";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   secret: env.AUTH_SECRET,
+  trustHost: true,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     Google({
