@@ -3,6 +3,7 @@ import connectDB from "@/lib/mongodb";
 import { registerSchema } from "@/lib/validations/auth";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
 export async function POST(request: Request) {
   try {
@@ -54,7 +55,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Validation error", details: error.errors },
+        { error: "Validation error", details: error.issues },
         { status: 400 }
       );
     }
