@@ -7,9 +7,9 @@ export function LoginButton() {
   return (
     <Button
       onClick={() => signIn("google", { callbackUrl: "/" })}
-      variant="default"
+      variant="ghost"
     >
-      Sign in with Google
+      Login
     </Button>
   );
 }
