@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import { env } from "@/env";
+import mongoose from "mongoose";
 
 const MONGODB_URI = env.MONGODB_URI;
 
@@ -19,10 +19,10 @@ declare global {
   var mongoose: MongooseCache | undefined;
 }
 
-let cached: MongooseCache = global.mongoose;
+const cached: MongooseCache = global.mongoose ?? { conn: null, promise: null };
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+if (!global.mongoose) {
+  global.mongoose = cached;
 }
 
 async function connectDB(): Promise<typeof mongoose> {
@@ -51,4 +51,3 @@ async function connectDB(): Promise<typeof mongoose> {
 }
 
 export default connectDB;
-
