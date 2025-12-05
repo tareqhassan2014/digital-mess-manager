@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
       {/* Left Panel - Illustration */}
-      <div className="relative flex-1 lg:w-1/2 overflow-hidden bg-gradient-to-br from-blue-700 via-purple-500 to-pink-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-[300px] lg:min-h-screen">
+      <div className="hidden lg:flex relative flex-1 lg:w-1/2 overflow-hidden bg-gradient-to-br from-blue-700 via-purple-500 to-pink-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen">
         <div className="flex flex-col items-center justify-center w-full h-full p-8 lg:p-12">
           {/* Illustration */}
           <div className="relative w-64 h-64 lg:w-96 lg:h-96 mb-6 lg:mb-8">

@@ -7,7 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff, Home, Lock, Phone } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function LoginForm({
@@ -16,6 +18,36 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const result = await signIn("credentials", {
+        identifier,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError("Invalid email/phone or password");
+      } else if (result?.ok) {
+        router.push("/");
+        router.refresh();
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -33,8 +65,14 @@ export function LoginForm({
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
+              {error && (
+                <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                  {error}
+                </div>
+              )}
+
               {/* Phone or Email Field */}
               <div className="grid gap-2">
                 <Label htmlFor="phone-or-email" className="text-foreground">
@@ -47,7 +85,10 @@ export function LoginForm({
                     type="text"
                     placeholder="Phone or Email"
                     className="pl-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
                     required
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -64,7 +105,10 @@ export function LoginForm({
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className="pl-10 pr-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
+                    disabled={isLoading}
                   />
                   <button
                     type="button"
@@ -89,6 +133,7 @@ export function LoginForm({
                     onCheckedChange={(checked) =>
                       setRememberMe(checked === true)
                     }
+                    disabled={isLoading}
                   />
                   <Label
                     htmlFor="remember-me"
@@ -106,8 +151,13 @@ export function LoginForm({
               </div>
 
               {/* Login Button */}
-              <Button type="submit" className="w-full" size="lg">
-                Login
+              <Button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
+                size="lg"
+                disabled={isLoading}
+              >
+                {isLoading ? "Logging in..." : "Login"}
               </Button>
 
               {/* Separator */}
@@ -126,7 +176,9 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2"
+                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  onClick={() => signIn("google", { callbackUrl: "/" })}
+                  disabled={isLoading}
                 >
                   <svg
                     className="h-5 w-5"
@@ -158,7 +210,9 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-2"
+                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  onClick={() => signIn("facebook", { callbackUrl: "/" })}
+                  disabled={isLoading}
                 >
                   <svg
                     className="h-5 w-5"
@@ -175,7 +229,9 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-black hover:bg-gray-900 text-white border-black hover:border-gray-900 dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2"
+                  className="w-full bg-black hover:bg-gray-900 text-white border-black hover:border-gray-900 dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  onClick={() => signIn("twitter", { callbackUrl: "/" })}
+                  disabled={isLoading}
                 >
                   <svg
                     className="h-5 w-5"
@@ -185,7 +241,6 @@ export function LoginForm({
                   >
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
-                  <span className="text-xs font-medium">X</span>
                 </Button>
               </div>
 

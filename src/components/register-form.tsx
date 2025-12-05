@@ -88,9 +88,45 @@ export function RegisterForm({
     },
   });
 
-  const onSubmit = (data: StudentFormData | ManagerFormData) => {
-    console.log("Form submitted:", { role, data });
-    // TODO: Handle form submission
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const onSubmit = async (data: StudentFormData | ManagerFormData) => {
+    setError("");
+    setSuccess(false);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: data.fullName,
+          phone: data.phone,
+          password: data.password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.error || "Registration failed");
+        return;
+      }
+
+      setSuccess(true);
+      // Redirect to login after successful registration
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 2000);
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onSubmitStudent = studentForm.handleSubmit((data) => onSubmit(data));
@@ -121,13 +157,24 @@ export function RegisterForm({
             onSubmit={role === "student" ? onSubmitStudent : onSubmitManager}
           >
             <div className="grid gap-6">
+              {error && (
+                <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                  {error}
+                </div>
+              )}
+
+              {success && (
+                <div className="p-3 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
+                  Registration successful! Redirecting to login...
+                </div>
+              )}
               {/* Social Login Buttons */}
               <div className="grid grid-cols-2 gap-3">
                 {/* Google */}
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-3"
+                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                 >
                   <svg
                     className="h-5 w-5"
@@ -159,7 +206,7 @@ export function RegisterForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-3"
+                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                 >
                   <svg
                     className="h-5 w-5"
@@ -194,10 +241,10 @@ export function RegisterForm({
                     setAreaValue("");
                   }}
                   className={cn(
-                    "flex-1 relative z-10 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-200",
+                    "flex-1 relative z-10 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer",
                     role === "student"
                       ? "bg-background text-primary shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                   )}
                 >
                   Join a Hostel
@@ -211,10 +258,10 @@ export function RegisterForm({
                     setAreaValue("");
                   }}
                   className={cn(
-                    "flex-1 relative z-10 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-200",
+                    "flex-1 relative z-10 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer",
                     role === "manager"
                       ? "bg-background text-primary shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                   )}
                 >
                   Create a Hostel
@@ -412,15 +459,20 @@ export function RegisterForm({
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
                   size="lg"
                   disabled={
-                    role === "student"
+                    isLoading ||
+                    (role === "student"
                       ? studentForm.formState.isSubmitting
-                      : managerForm.formState.isSubmitting
+                      : managerForm.formState.isSubmitting)
                   }
                 >
-                  {role === "student" ? "Join Hostel" : "Create Hostel"}
+                  {isLoading
+                    ? "Creating account..."
+                    : role === "student"
+                    ? "Join Hostel"
+                    : "Create Hostel"}
                 </Button>
               </div>
 
