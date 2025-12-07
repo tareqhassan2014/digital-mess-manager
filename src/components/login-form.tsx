@@ -51,7 +51,7 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="shadow-lg border-0 bg-white dark:bg-slate-900">
+      <Card className="shadow-lg border border-border bg-card">
         <CardHeader className="text-center space-y-4">
           {/* Logo */}
           <div className="flex items-center justify-center gap-2">
@@ -62,7 +62,9 @@ export function LoginForm({
               Latent Talent Hostel
             </span>
           </div>
-          <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
+          <CardTitle className="text-2xl font-bold text-foreground">
+            Welcome Back
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -84,7 +86,7 @@ export function LoginForm({
                     id="phone-or-email"
                     type="text"
                     placeholder="Phone or Email"
-                    className="pl-10 bg-white dark:bg-slate-800"
+                    className="pl-10 bg-background"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     required
@@ -104,7 +106,7 @@ export function LoginForm({
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className="pl-10 pr-10 bg-white dark:bg-slate-800"
+                    className="pl-10 pr-10 bg-background"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -153,7 +155,7 @@ export function LoginForm({
               {/* Login Button */}
               <Button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
+                className="w-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
                 size="lg"
                 disabled={isLoading}
               >
@@ -163,9 +165,9 @@ export function LoginForm({
               {/* Separator */}
               <div className="relative text-center text-sm">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full h-px bg-gradient-to-r from-transparent via-muted-foreground/20 to-transparent"></div>
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
                 </div>
-                <span className="relative bg-white dark:bg-slate-900 px-2 text-muted-foreground">
+                <span className="relative bg-card px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
@@ -176,7 +178,7 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-background hover:bg-muted dark:bg-card dark:hover:bg-muted flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                   onClick={() => signIn("google", { callbackUrl: "/" })}
                   disabled={isLoading}
                 >
@@ -203,14 +205,16 @@ export function LoginForm({
                       fill="#EA4335"
                     />
                   </svg>
-                  <span className="text-xs font-medium">Google</span>
+                  <span className="text-xs font-medium text-foreground">
+                    Google
+                  </span>
                 </Button>
 
                 {/* Facebook */}
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] dark:bg-[#1877F2] dark:hover:bg-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                   onClick={() => signIn("facebook", { callbackUrl: "/" })}
                   disabled={isLoading}
                 >
@@ -229,7 +233,7 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-black hover:bg-gray-900 text-white dark:bg-slate-800 dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-foreground hover:bg-foreground/90 text-background border-foreground hover:border-foreground/90 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                   onClick={() => signIn("twitter", { callbackUrl: "/" })}
                   disabled={isLoading}
                 >

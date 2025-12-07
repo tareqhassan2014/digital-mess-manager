@@ -134,7 +134,7 @@ export function RegisterForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="shadow-lg border-0 bg-white dark:bg-slate-900">
+      <Card className="shadow-lg border border-border bg-card">
         <CardHeader className="text-center space-y-4">
           {/* Logo */}
           <div className="flex items-center justify-center gap-2">
@@ -145,7 +145,9 @@ export function RegisterForm({
               Latent Talent Hostel
             </span>
           </div>
-          <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
+          <CardTitle className="text-2xl font-bold text-foreground">
+            Create Account
+          </CardTitle>
           <CardDescription>
             {role === "student"
               ? "Join a hostel and start managing your meals"
@@ -164,7 +166,7 @@ export function RegisterForm({
               )}
 
               {success && (
-                <div className="p-3 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 rounded-md shadow-sm">
+                <div className="p-3 text-sm text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md shadow-sm">
                   Registration successful! Redirecting to login...
                 </div>
               )}
@@ -174,7 +176,7 @@ export function RegisterForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-background hover:bg-muted dark:bg-card dark:hover:bg-muted flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                 >
                   <svg
                     className="h-5 w-5"
@@ -199,14 +201,16 @@ export function RegisterForm({
                       fill="#EA4335"
                     />
                   </svg>
-                  <span className="text-xs font-medium">Google</span>
+                  <span className="text-xs font-medium text-foreground">
+                    Google
+                  </span>
                 </Button>
 
                 {/* Facebook */}
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-[#1877F2] hover:bg-[#166FE5] text-white border-[#1877F2] hover:border-[#166FE5] dark:bg-[#1877F2] dark:hover:bg-[#166FE5] flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                 >
                   <svg
                     className="h-5 w-5"
@@ -223,15 +227,15 @@ export function RegisterForm({
               {/* Separator */}
               <div className="relative text-center text-sm">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full h-px bg-gradient-to-r from-transparent via-muted-foreground/20 to-transparent"></div>
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
                 </div>
-                <span className="relative bg-white dark:bg-slate-900 px-2 text-muted-foreground">
+                <span className="relative bg-card px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
 
               {/* Role Switcher */}
-              <div className="relative bg-muted rounded-full p-1 flex">
+              <div className="relative bg-muted/50 rounded-full p-1 flex border border-border">
                 <button
                   type="button"
                   onClick={() => {
@@ -243,8 +247,8 @@ export function RegisterForm({
                   className={cn(
                     "flex-1 relative z-10 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer",
                     role === "student"
-                      ? "bg-background text-primary shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                      ? "bg-background text-primary shadow-sm border border-border"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
                   Join a Hostel
@@ -260,8 +264,8 @@ export function RegisterForm({
                   className={cn(
                     "flex-1 relative z-10 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer",
                     role === "manager"
-                      ? "bg-background text-primary shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                      ? "bg-background text-primary shadow-sm border border-border"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
                   Create a Hostel
@@ -279,7 +283,7 @@ export function RegisterForm({
                       id="fullName"
                       type="text"
                       placeholder="Enter your full name"
-                      className="pl-10 bg-white dark:bg-slate-800"
+                      className="pl-10 bg-background"
                       {...(role === "student"
                         ? studentForm.register("fullName")
                         : managerForm.register("fullName"))}
@@ -308,7 +312,7 @@ export function RegisterForm({
                       id="phone"
                       type="tel"
                       placeholder="01XXXXXXXXX"
-                      className="pl-10 bg-white dark:bg-slate-800"
+                      className="pl-10 bg-background"
                       {...(role === "student"
                         ? studentForm.register("phone")
                         : managerForm.register("phone"))}
@@ -337,7 +341,7 @@ export function RegisterForm({
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      className="pl-10 pr-10 bg-white dark:bg-slate-800"
+                      className="pl-10 pr-10 bg-background"
                       {...(role === "student"
                         ? studentForm.register("password")
                         : managerForm.register("password"))}
@@ -379,7 +383,7 @@ export function RegisterForm({
                         type="text"
                         placeholder="DH-402"
                         maxLength={6}
-                        className="pl-10 uppercase bg-white dark:bg-slate-800"
+                        className="pl-10 uppercase bg-background"
                         {...studentForm.register("hostelCode")}
                       />
                     </div>
@@ -402,7 +406,7 @@ export function RegisterForm({
                           id="hostelName"
                           type="text"
                           placeholder="Mayer Doa Student Mess"
-                          className="pl-10 bg-white dark:bg-slate-800"
+                          className="pl-10 bg-background"
                           {...managerForm.register("hostelName")}
                         />
                       </div>
@@ -433,7 +437,7 @@ export function RegisterForm({
                           <SelectTrigger
                             id="area"
                             className={cn(
-                              "h-12 pl-10 bg-white dark:bg-slate-800",
+                              "h-12 pl-10 bg-background",
                               managerForm.formState.errors.area &&
                                 "ring-2 ring-destructive/50"
                             )}
@@ -459,7 +463,7 @@ export function RegisterForm({
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
+                  className="w-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
                   size="lg"
                   disabled={
                     isLoading ||

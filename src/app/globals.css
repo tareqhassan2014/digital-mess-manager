@@ -141,3 +141,23 @@ body {
 .dark .glass {
   background: rgb(15 23 42 / 0.7);
 }
+
+/* Theme-aware gradient utilities for hero/CTA sections */
+.gradient-hero {
+  background: linear-gradient(135deg, hsl(217 91% 50%) 0%, hsl(280 80% 55%) 50%, hsl(340 85% 60%) 100%);
+}
+
+.dark .gradient-hero {
+  background: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(217 33% 17%) 50%, hsl(222 47% 11%) 100%);
+}
+
+/* Theme-aware subtle background */
+.bg-subtle {
+  background-color: hsl(var(--muted) / 0.3);
+}
+
+/* Theme-aware card background with better contrast */
+.bg-card-elevated {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
