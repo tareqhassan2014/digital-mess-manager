@@ -158,13 +158,13 @@ export function RegisterForm({
           >
             <div className="grid gap-6">
               {error && (
-                <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md shadow-sm">
                   {error}
                 </div>
               )}
 
               {success && (
-                <div className="p-3 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
+                <div className="p-3 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 rounded-md shadow-sm">
                   Registration successful! Redirecting to login...
                 </div>
               )}
@@ -174,7 +174,7 @@ export function RegisterForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-3 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                 >
                   <svg
                     className="h-5 w-5"
@@ -223,7 +223,7 @@ export function RegisterForm({
               {/* Separator */}
               <div className="relative text-center text-sm">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300 dark:border-slate-700"></div>
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-muted-foreground/20 to-transparent"></div>
                 </div>
                 <span className="relative bg-white dark:bg-slate-900 px-2 text-muted-foreground">
                   Or continue with
@@ -279,7 +279,7 @@ export function RegisterForm({
                       id="fullName"
                       type="text"
                       placeholder="Enter your full name"
-                      className="pl-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                      className="pl-10 bg-white dark:bg-slate-800"
                       {...(role === "student"
                         ? studentForm.register("fullName")
                         : managerForm.register("fullName"))}
@@ -308,7 +308,7 @@ export function RegisterForm({
                       id="phone"
                       type="tel"
                       placeholder="01XXXXXXXXX"
-                      className="pl-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                      className="pl-10 bg-white dark:bg-slate-800"
                       {...(role === "student"
                         ? studentForm.register("phone")
                         : managerForm.register("phone"))}
@@ -337,7 +337,7 @@ export function RegisterForm({
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      className="pl-10 pr-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                      className="pl-10 pr-10 bg-white dark:bg-slate-800"
                       {...(role === "student"
                         ? studentForm.register("password")
                         : managerForm.register("password"))}
@@ -379,7 +379,7 @@ export function RegisterForm({
                         type="text"
                         placeholder="DH-402"
                         maxLength={6}
-                        className="pl-10 uppercase bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                        className="pl-10 uppercase bg-white dark:bg-slate-800"
                         {...studentForm.register("hostelCode")}
                       />
                     </div>
@@ -402,7 +402,7 @@ export function RegisterForm({
                           id="hostelName"
                           type="text"
                           placeholder="Mayer Doa Student Mess"
-                          className="pl-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                          className="pl-10 bg-white dark:bg-slate-800"
                           {...managerForm.register("hostelName")}
                         />
                       </div>
@@ -433,9 +433,9 @@ export function RegisterForm({
                           <SelectTrigger
                             id="area"
                             className={cn(
-                              "h-12 pl-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700",
+                              "h-12 pl-10 bg-white dark:bg-slate-800",
                               managerForm.formState.errors.area &&
-                                "border-destructive"
+                                "ring-2 ring-destructive/50"
                             )}
                           >
                             <SelectValue placeholder="Select an area" />

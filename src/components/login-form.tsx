@@ -68,7 +68,7 @@ export function LoginForm({
           <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
               {error && (
-                <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md shadow-sm">
                   {error}
                 </div>
               )}
@@ -84,7 +84,7 @@ export function LoginForm({
                     id="phone-or-email"
                     type="text"
                     placeholder="Phone or Email"
-                    className="pl-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                    className="pl-10 bg-white dark:bg-slate-800"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     required
@@ -104,7 +104,7 @@ export function LoginForm({
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className="pl-10 pr-10 bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700"
+                    className="pl-10 pr-10 bg-white dark:bg-slate-800"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -163,7 +163,7 @@ export function LoginForm({
               {/* Separator */}
               <div className="relative text-center text-sm">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300 dark:border-slate-700"></div>
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-muted-foreground/20 to-transparent"></div>
                 </div>
                 <span className="relative bg-white dark:bg-slate-900 px-2 text-muted-foreground">
                   Or continue with
@@ -176,7 +176,7 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                   onClick={() => signIn("google", { callbackUrl: "/" })}
                   disabled={isLoading}
                 >
@@ -229,7 +229,7 @@ export function LoginForm({
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full bg-black hover:bg-gray-900 text-white border-black hover:border-gray-900 dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
+                  className="w-full bg-black hover:bg-gray-900 text-white dark:bg-slate-800 dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 h-auto py-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer"
                   onClick={() => signIn("twitter", { callbackUrl: "/" })}
                   disabled={isLoading}
                 >

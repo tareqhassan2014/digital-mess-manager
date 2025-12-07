@@ -56,7 +56,7 @@ export default function LandingPage() {
 
                 {/* Meal Toggle Cards */}
                 <div className="space-y-4">
-                  <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
+                  <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 shadow-md">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-semibold text-slate-900 dark:text-slate-100">
@@ -72,7 +72,7 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
+                  <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 shadow-md">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-semibold text-slate-900 dark:text-slate-100">
@@ -160,7 +160,7 @@ export default function LandingPage() {
           {/* Mobile: Horizontal Snap Carousel */}
           <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 md:hidden">
             {/* Card 1: One-Tap Meal Off */}
-            <div className="flex-shrink-0 w-[85vw] snap-start bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="flex-shrink-0 w-[85vw] snap-start bg-card rounded-lg p-8 shadow-lg">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
                   <Zap className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -174,7 +174,7 @@ export default function LandingPage() {
             </div>
 
             {/* Card 2: Manager Panic Mode */}
-            <div className="flex-shrink-0 w-[85vw] snap-start bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="flex-shrink-0 w-[85vw] snap-start bg-card rounded-lg p-8 shadow-lg">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
                   <Lock className="h-6 w-6 text-red-600 dark:text-red-400" />
@@ -188,7 +188,7 @@ export default function LandingPage() {
             </div>
 
             {/* Card 3: Dispute-Free Billing */}
-            <div className="flex-shrink-0 w-[85vw] snap-start bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="flex-shrink-0 w-[85vw] snap-start bg-card rounded-lg p-8 shadow-lg">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                   <History className="h-6 w-6 text-blue-600 dark:text-blue-400" />
@@ -205,7 +205,7 @@ export default function LandingPage() {
           {/* Desktop: Grid */}
           <div className="hidden md:grid md:grid-cols-3 md:gap-8">
             {/* Card 1: One-Tap Meal Off */}
-            <div className="bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="bg-card rounded-lg p-8 shadow-lg">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
                   <Zap className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -219,7 +219,7 @@ export default function LandingPage() {
             </div>
 
             {/* Card 2: Manager Panic Mode */}
-            <div className="bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="bg-card rounded-lg p-8 shadow-lg">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
                   <Lock className="h-6 w-6 text-red-600 dark:text-red-400" />
@@ -233,7 +233,7 @@ export default function LandingPage() {
             </div>
 
             {/* Card 3: Dispute-Free Billing */}
-            <div className="bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="bg-card rounded-lg p-8 shadow-lg">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                   <History className="h-6 w-6 text-blue-600 dark:text-blue-400" />
@@ -254,7 +254,7 @@ export default function LandingPage() {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row gap-6 md:gap-8">
             {/* Box A: Student */}
-            <div className="flex-1 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-8 md:p-12 shadow-sm">
+            <div className="flex-1 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-900 rounded-xl p-8 md:p-12 shadow-lg">
               <div className="space-y-6">
                 <h3 className="text-2xl md:text-3xl font-bold">
                   I need to track my meals.
@@ -275,7 +275,7 @@ export default function LandingPage() {
             </div>
 
             {/* Box B: Manager */}
-            <div className="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-8 md:p-12 shadow-sm">
+            <div className="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900 rounded-xl p-8 md:p-12 shadow-lg">
               <div className="space-y-6">
                 <h3 className="text-2xl md:text-3xl font-bold">
                   I need to manage a hostel.

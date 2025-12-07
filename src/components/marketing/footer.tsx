@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
+    <footer className="bg-muted/30 shadow-sm">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12">
@@ -281,7 +281,7 @@ export function Footer() {
       </div>
 
       {/* Security/Compliance Section */}
-      <div className="border-t border-border bg-muted/20">
+      <div className="bg-muted/20">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
@@ -310,7 +310,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar - Copyright */}
-      <div className="border-t border-border bg-muted/20">
+      <div className="bg-muted/20">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <p className="text-sm text-muted-foreground">
