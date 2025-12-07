@@ -8,6 +8,8 @@ export interface IHostel extends mongoose.Document {
     type: "Point";
     coordinates: [number, number]; // [longitude, latitude]
   };
+  owner: mongoose.Types.ObjectId;
+  manager?: mongoose.Types.ObjectId;
   members: mongoose.Types.ObjectId[];
   seats: {
     total: number;
@@ -44,6 +46,15 @@ const HostelSchema = new Schema<IHostel>(
         type: [Number],
         required: true,
       },
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    manager: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     members: [
       {
